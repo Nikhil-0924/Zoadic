@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Signs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .zodiac-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .zodiac-button {
+            border: 1px solid gray;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .zodiac-button img {
+            width: 50px;
+            height: 50px;
+        }
+        .details {
+            border: 1px solid gray;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            text-align: left;
+        }
+        .details img {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Your Zodiac Sign</h1>
+    <div class="zodiac-container" id="zodiacContainer"></div>
+    <div class="details" id="zodiacDetails"></div>
+    
+    <script>
+        const zodiacData = {
+            "Mesham": { image: "mesham.png", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 7 },
+            "Vrishabham": { image: "vrishabham.png", adayam: 11, vyayam: 5, rajapujyam: 1, avamanam: 3 },
+            "Mithunam": { image: "mithunam.png", adayam: 10, vyayam: 6, rajapujyam: 2, avamanam: 3 },
+            "Karkatakam": { image: "karkatakam.png", adayam: 8, vyayam: 2, rajapujyam: 7, avamanam: 6 },
+            "Simham": { image: "simham.png", adayam: 11, vyayam: 11, rajapujyam: 3, avamanam: 6 },
+            "Kanya": { image: "kanya.png", adayam: 14, vyayam: 2, rajapujyam: 6, avamanam: 6 },
+            "Tula": { image: "tula.png", adayam: 11, vyayam: 5, rajapujyam: 2, avamanam: 2 },
+            "Vrischikam": { image: "vrischikam.png", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 2 },
+            "Dhanus": { image: "dhanus.png", adayam: 5, vyayam: 5, rajapujyam: 5, avamanam: 5 },
+            "Makaram": { image: "makaram.png", adayam: 8, vyayam: 14, rajapujyam: 4, avamanam: 5 },
+            "Kumbham": { image: "kumbham.png", adayam: 8, vyayam: 14, rajapujyam: 7, avamanam: 5 },
+            "Meenam": { image: "meenam.png", adayam: 5, vyayam: 5, rajapujyam: 3, avamanam: 1 }
+        };
+
+        const zodiacContainer = document.getElementById("zodiacContainer");
+        const zodiacDetails = document.getElementById("zodiacDetails");
+
+        Object.keys(zodiacData).forEach(zodiac => {
+            const button = document.createElement("div");
+            button.classList.add("zodiac-button");
+            button.innerHTML = `<img src="${zodiacData[zodiac].image}" alt="${zodiac}">`;
+            button.onclick = () => updateDetails(zodiac);
+            zodiacContainer.appendChild(button);
+        });
+
+        function updateDetails(zodiac) {
+            const data = zodiacData[zodiac];
+            zodiacDetails.innerHTML = `
+                <img src="${data.image}" alt="${zodiac}">
+                <h2>${zodiac}</h2>
+                <p>Adayam: ${data.adayam}</p>
+                <p>Vyayam: ${data.vyayam}</p>
+                <p>Rajapujyam: ${data.rajapujyam}</p>
+                <p>Avamanam: ${data.avamanam}</p>
+            `;
+        }
+    </script>
+</body>
